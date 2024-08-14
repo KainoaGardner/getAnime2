@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from sqlalchemy import Date
-from datetime import date
 
 
 class UserBase(BaseModel):
@@ -23,27 +21,36 @@ class User(UserBase):
         orm_mode = True
 
 
-class EntryBase(BaseModel):
+class Entry(BaseModel):
+    mal_id: int
     title: str
     japanese_title: str
-    show_id: int
-    show_image: str
+    image: str
 
 
-class EntryCreate(EntryBase):
+class EntryCreate(Entry):
     user_id: int
 
 
-class Entry(EntryBase):
+class EntryId(Entry):
     id: int
     user_id: int
 
 
-class Anime(BaseModel):
+class AnimeBase(BaseModel):
     title: str
     japanese_title: str
-    show_id: int
-    show_image: str
+    image: str
+
+
+class Anime(AnimeBase):
+    mal_id: int
+
+
+class WeeklyAnime(BaseModel):
+    title: str
+    airing_day: str
+    episode: str
 
 
 class Token(BaseModel):

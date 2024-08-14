@@ -6,6 +6,17 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      POSTGRES_DATABASE: "getanime"
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_HOST: "postgres:5432"
+      LIVECHART_URL: "https://www.livechart.me/schedule"
+      MAL_API_URL: "https://api.myanimelist.net/v2"
+      MAL_CLIENT_ID: ${MAL_CLIENT_ID}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      ALGORITHM: ${ALGORITHM}
+
     ports:
       - "8000:8000"
     depends_on:
@@ -15,8 +26,8 @@ services:
     image: postgres:14-alpine
 
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=getAnime
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "getanime"
     ports:
       - "5432:5432"

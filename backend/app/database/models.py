@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -18,6 +18,6 @@ class Entries(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     japanese_title = Column(String, index=True)
-    show_id = Column(Integer)
-    show_image = Column(String)
+    mal_id = Column(Integer)
+    image = Column(String)
     user_id = Column(Integer, ForeignKey("users.id"))

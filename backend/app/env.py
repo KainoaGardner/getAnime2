@@ -1,11 +1,16 @@
 import os
-from dotenv.main import load_dotenv
 
-load_dotenv()
+
+POSTGRES_DATABASE = os.getenv("POSTGRES_DATABASE")
+POSTGRES_USERNAME = os.getenv("POSTGRES_USERNAME")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 
 MAL_API_URL = os.getenv("MAL_API_URL")
 MAL_CLIENT_ID = os.getenv("MAL_CLIENT_ID")
-
 MAL_API_HEADERS = {"X-MAL-CLIENT-ID": MAL_CLIENT_ID}
+
+LIVECHART_URL = os.getenv("LIVECHART_URL")

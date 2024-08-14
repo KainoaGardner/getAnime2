@@ -1,26 +1,23 @@
-from fastapi import HTTPException, APIRouter, Depends
+from fastapi import APIRouter
+from typing import Dict
 
-from sqlalchemy.orm import Session
-from app.database.schemas import Anime
-from app.database.database import get_db
+from app.database.schemas import AnimeBase, WeeklyAnime
 
 from app.functions import lists
-from app.functions.authentication import user_dependency
 
 router = APIRouter(prefix="/lists", tags=["Anime Lists"])
 
 
-@router.get("/watchlist/airing", response_model=list[Anime])
-def get_user_today(auth: user_dependency, db: Session = Depends(get_db)):
-    return []
+@router.get("/today", response_model=Dict[str, WeeklyAnime])
+def get_airing_today():
+    return lists.get_today()
 
 
-@router.get("/today", response_model=list[Anime])
-def get_airing_today(db: Session = Depends(get_db)):
-    return []
+@router.get("/weekly", response_model=Dict[str, WeeklyAnime])
+def get_airing_weekly():
+    return lists.get_weekly()
 
 
-@router.get("/season", response_model=list[Anime])
+@router.get("/season", response_model=Dict[str, AnimeBase])
 def get_season():
-    lists.get_season()
-    return []
+    return lists.get_season()
