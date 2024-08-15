@@ -1,5 +1,7 @@
 FROM python:3.12-slim
 
+ENV TZ="America/Los_Angeles"
+
 WORKDIR /backend
 
 COPY ./requirments.txt /backend/requirments.txt

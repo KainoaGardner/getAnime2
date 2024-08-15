@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
+
 
 from app.functions.cache import read_cache, save_cache
 
@@ -10,9 +10,12 @@ import json
 
 
 def webscrape(week):
-    options = Options()
-    options.add_argument("--headless")
-    driver = webdriver.Firefox(options=options)
+    # options.add_argument("--headless")
+    driver = webdriver.Remote(
+        options=webdriver.ChromeOptions(),
+        command_executor="http://chrome:4444/wd/hub",
+    )
+
     driver.get(LIVECHART_URL)
     driver.find_element(By.XPATH, '//*[@title="Full Layout"]').click()
 

@@ -8,6 +8,7 @@ from app.database.database import get_db
 from datetime import timedelta
 from app.database.schemas import Token
 from app.functions import authentication
+from datetime import datetime
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -24,4 +25,5 @@ def login_in_token(
     token = authentication.create_access_token(
         user.username, user.id, timedelta(days=7)
     )
+
     return {"access_token": token, "token_type": "bearer", "id": user.id}

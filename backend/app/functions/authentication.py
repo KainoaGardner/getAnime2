@@ -9,8 +9,9 @@ from fastapi.security import OAuth2PasswordBearer
 from app.database.database import get_db
 from app.database import models
 from app.password import verify_password
-from app.env import JWT_SECRET_KEY, ALGORITHM
+from app.env import JWT_SECRET_KEY
 
+ALGORITHM = "HS256"
 
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl="/auth/token")
 db_dependency = Annotated[Session, Depends(get_db)]
@@ -20,7 +21,8 @@ def create_access_token(username: str, user_id: int, expires_delta: timedelta):
     encode = {"sub": username, "id": user_id}
     expires = datetime.now(timezone.utc) + expires_delta
     encode.update({"exp": expires})
-    return jwt.encode(encode, JWT_SECRET_KEY, algorithm=ALGORITHM)
+    token = jwt.encode(encode, JWT_SECRET_KEY, algorithm=ALGORITHM)
+    return token
 
 
 def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):

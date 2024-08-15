@@ -9,7 +9,7 @@ def read_cache(file: str):
         return season_cache
 
     except:
-        raise ValueError("Cache error 1")
+        raise ValueError("Cache error")
 
 
 def save_cache(file: str, data: Dict):
