@@ -24,3 +24,15 @@ def check_logged_in():
     cache = read_cache(f"{PATH}/user.json")
     if "access_token" not in cache:
         raise ValueError("Not Logged In")
+
+
+def get_auth_header():
+    check_logged_in()
+    cache = read_cache(f"{PATH}/user.json")
+    token = cache["access_token"]
+    return {"Authorization": "Bearer " + token}
+
+
+def get_settings_cache():
+    cache = read_cache(f"{PATH}/settings.json")
+    print(cache)

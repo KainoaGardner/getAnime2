@@ -14,6 +14,10 @@ class UserChange(BaseModel):
     password: str | None = None
 
 
+class Settings(BaseModel):
+    japanese_titles: bool
+
+
 class User(UserBase):
     id: int
 
@@ -30,6 +34,10 @@ class Entry(BaseModel):
 
 class EntryCreate(Entry):
     user_id: int
+
+
+class EntryIds(BaseModel):
+    entries: list[int]
 
 
 class EntryId(Entry):

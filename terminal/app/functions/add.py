@@ -1,98 +1,50 @@
-from app import APIBASE, TerminalColor
-import requests
-import json
+from app import TerminalColor
+from app.functions.cache import get_auth_header
+from app.api.calls import (
+    clear_watchlist,
+    add_entries,
+    delete_entries,
+    get_user_settings,
+)
 
 
-def clear():
-    with open(
-        "/home/cowie/programming/python/restGetAnime/terminal/app/user.json", "r"
-    ) as f:
-        json_object = json.load(f)
-        if "token" not in json_object:
-            print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
+def show_add_remove_list(japanese_titles, anime_list):
+    for count, anime in enumerate(anime_list):
+        print(
+            TerminalColor.BOLD
+            + f"{count + 1} ID: {anime["mal_id"]}"
+            + TerminalColor.END,
+            end=" ",
+        )
+        if japanese_titles:
+            print(anime["japanese_title"])
         else:
-            token = json_object["token"]
-            headersAuth = {"Authorization": "Bearer " + token}
-
-            user_response = requests.delete(
-                APIBASE + f"users/add/clear", headers=headersAuth
-            ).json()
-
-            if user_response:
-                print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
-
-            else:
-
-                print(
-                    TerminalColor.BOLD + "---Watchlist cleared---" + TerminalColor.END
-                )
+            print(anime["title"])
 
 
 def add(args):
-    with open(
-        "/home/cowie/programming/python/restGetAnime/terminal/app/user.json", "r"
-    ) as f:
-        json_object = json.load(f)
-        if "token" not in json_object:
-            print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
-        else:
-            token = json_object["token"]
-            headersAuth = {"Authorization": "Bearer " + token}
+    headersAuth = get_auth_header()
+    settings = get_user_settings(headersAuth)
+    japanese_titles = settings.json()["japanese_titles"]
 
-            shows = args.add
-
-            print(TerminalColor.BOLD + "---Adding---" + TerminalColor.END)
-            user_response = requests.post(
-                APIBASE + f"users/add/add",
-                json={"shows": shows},
-                headers=headersAuth,
-            ).json()
-
-            if "msg" in user_response:
-                print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
-
-            else:
-
-                for count, anime in enumerate(user_response):
-                    print(
-                        TerminalColor.BOLD
-                        + f"{count + 1} ID: "
-                        + anime
-                        + TerminalColor.END,
-                        end=" ",
-                    )
-                    print(user_response[anime]["title"])
+    entries = [int(x) for x in args.add]
+    response = add_entries(entries, headersAuth)
+    print(TerminalColor.BOLD + "---Adding---" + TerminalColor.END)
+    show_add_remove_list(japanese_titles, response.json())
 
 
 def delete(args):
-    with open(
-        "/home/cowie/programming/python/restGetAnime/terminal/app/user.json", "r"
-    ) as f:
-        json_object = json.load(f)
-        if "token" not in json_object:
-            print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
-        else:
-            token = json_object["token"]
-            headersAuth = {"Authorization": "Bearer " + token}
-            print(TerminalColor.BOLD + "---Deleting---" + TerminalColor.END)
+    headersAuth = get_auth_header()
+    settings = get_user_settings(headersAuth)
+    japanese_titles = settings.json()["japanese_titles"]
 
-            shows = args.delete
-            user_response = requests.delete(
-                APIBASE + f"users/add/delete",
-                json={"shows": shows},
-                headers=headersAuth,
-            ).json()
+    entries = [int(x) for x in args.delete]
+    response = delete_entries(entries, headersAuth)
+    print(TerminalColor.BOLD + "---Deleting---" + TerminalColor.END)
+    show_add_remove_list(japanese_titles, response.json())
 
-            if "msg" in user_response:
-                print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
 
-            else:
-                for count, anime in enumerate(user_response):
-                    print(
-                        TerminalColor.BOLD
-                        + f"{count + 1} ID: "
-                        + anime
-                        + TerminalColor.END,
-                        end=" ",
-                    )
-                    print(user_response[anime]["title"])
+def clear():
+    headersAuth = get_auth_header()
+    response = clear_watchlist(headersAuth)
+    print(TerminalColor.BOLD + "---Watchlist cleared---" + TerminalColor.END)

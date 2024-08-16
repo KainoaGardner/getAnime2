@@ -31,10 +31,10 @@ def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
         username: str = payload.get("sub")
         user_id: str = payload.get("id")
         if not username or not user_id:
-            raise HTTPException(status_code=401, detail="1Could not validate user")
+            raise HTTPException(status_code=401, detail="Could not validate user")
         return {"username": username, "id": user_id}
     except jwt.exceptions.InvalidTokenError:
-        raise HTTPException(status_code=401, detail="2Could not validate user")
+        raise HTTPException(status_code=401, detail="Could not validate user")
 
 
 user_dependency = Annotated[dict, Depends(get_current_user)]

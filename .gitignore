@@ -1,4 +1,5 @@
 backend/.venv
+terminal/.venv
 backend/.env
 .env
 

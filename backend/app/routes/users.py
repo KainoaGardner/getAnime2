@@ -1,7 +1,7 @@
 from fastapi import HTTPException, APIRouter, Depends
 
 from sqlalchemy.orm import Session
-from app.database.schemas import User, UserCreate
+from app.database.schemas import User, UserCreate, Settings
 from app.database.database import get_db
 
 from app.functions import users
@@ -21,17 +21,32 @@ def get_current_user(auth: user_dependency, db: Session = Depends(get_db)):
     return auth
 
 
-@router.get("/{search}", response_model=User)
-def get_user(search: str, search_by_id: bool = False, db: Session = Depends(get_db)):
-    if search_by_id:
-        if not search.isnumeric():
-            raise HTTPException(status_code=404, detail="Search must be an int")
-        user = users.get_user_id(db, search)
-    else:
-        user = users.get_user_username(db, search)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
+# @router.get("/{search}", response_model=User)
+# def get_user(search: str, search_by_id: bool = False, db: Session = Depends(get_db)):
+#     if search_by_id:
+#         if not search.isnumeric():
+#             raise HTTPException(status_code=404, detail="Search must be an int")
+#         user = users.get_user_id(db, search)
+#     else:
+#         user = users.get_user_username(db, search)
+#     if not user:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     return user
+
+
+@router.get("/settings", response_model=Settings)
+def get_settings(auth: user_dependency, db: Session = Depends(get_db)):
+    user_id = auth["id"]
+    print("test")
+    return users.get_settings(db, user_id)
+
+
+@router.put("/settings", response_model=Settings)
+def get_settings(
+    auth: user_dependency, new_settings: Settings, db: Session = Depends(get_db)
+):
+    user_id = auth["id"]
+    return users.put_settings(db, user_id, new_settings)
 
 
 @router.post("/create", response_model=User)

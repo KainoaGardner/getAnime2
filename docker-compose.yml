@@ -25,6 +25,7 @@ services:
   chrome:
     image: selenium/standalone-chrome:latest
     hostname: chrome
+    restart: always
 
     ports:
       - "4444:4444"

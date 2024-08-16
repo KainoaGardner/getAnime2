@@ -9,12 +9,16 @@ if args.login:
     login(args)
 elif args.logout:
     logout()
+elif args.settings:
+    settings()
+elif args.japanese_titles:
+    toggle_japanese_titles()
 elif args.user:
     user()
 elif args.register:
     register(args)
-elif args.removeaccount:
-    delete_account(args)
+elif args.deleteaccount:
+    delete_account()
 elif args.lists:
     lists(args)
 elif args.clear:

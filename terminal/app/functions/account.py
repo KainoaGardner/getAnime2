@@ -1,14 +1,23 @@
-from app import APIBASE, TerminalColor, PATH
-from app.functions.cache import read_cache, save_cache, check_logged_in
-from app.api.calls import get_auth_token, get_current_user
-import requests
 import json
+
+from app import TerminalColor, PATH
+from app.functions.cache import save_cache, check_logged_in, get_auth_header
+from app.api.calls import (
+    get_auth_token,
+    get_current_user,
+    post_new_user,
+    delete_user,
+    get_user_settings,
+    put_user_settings,
+)
 
 
 def login(args):
     username, password = args.login
     response = get_auth_token(username, password)
-    token = json.dumps(response.json())
+    token = response.json()
+    token = json.dumps(token)
+
     try:
         save_cache(f"{PATH}/user.json", token)
     except:
@@ -17,10 +26,31 @@ def login(args):
     print(TerminalColor.BOLD + f"Logged into {username}" + TerminalColor.END)
 
 
-def user():
+def settings():
     check_logged_in()
-    cache = read_cache(f"{PATH}/user.json")
-    response = get_current_user(cache["access_token"])
+    headersAuth = get_auth_header()
+    response = get_user_settings(headersAuth)
+    print(TerminalColor.BOLD + "---Settings---" + TerminalColor.END)
+    for setting in response.json().items():
+        print(setting)
+
+
+def toggle_japanese_titles():
+    check_logged_in()
+    headersAuth = get_auth_header()
+    response = get_user_settings(headersAuth)
+    japanese_titles = response.json()["japanese_titles"]
+    response = put_user_settings(not japanese_titles, headersAuth)
+    print(
+        TerminalColor.BOLD
+        + f"Japanese Titles changed to {not japanese_titles}"
+        + TerminalColor.END
+    )
+
+
+def user():
+    headersAuth = get_auth_header()
+    response = get_current_user(headersAuth)
     print(
         TerminalColor.BOLD
         + f"Logged in as {response.json()["username"]}"
@@ -29,38 +59,32 @@ def user():
 
 
 def logout():
-    with open(
-        "/home/cowie/programming/python/restGetAnime/terminal/app/user.json", "r"
-    ) as f:
-        json_object = json.load(f)
-        if "token" in json_object:
-            with open(
-                "/home/cowie/programming/python/restGetAnime/terminal/app/user.json",
-                "w",
-            ) as file:
-                user_object = json.dumps({})
-                file.write(user_object)
-
-                print(TerminalColor.BOLD + f"Logged out" + TerminalColor.END)
-        else:
-            print(TerminalColor.BOLD + "Not logged in" + TerminalColor.END)
+    check_logged_in()
+    save_cache(f"{PATH}/user.json", json.dumps({}))
+    print(TerminalColor.BOLD + f"Logged out" + TerminalColor.END)
 
 
 def register(args):
     username, password = args.register
-    user_response = requests.post(
-        APIBASE + "users/account",
-        json={"register": {"username": username, "password": password}},
-    ).json()
-
-    print(TerminalColor.BOLD + user_response["result"] + TerminalColor.END)
+    response = post_new_user(username, password)
+    print(TerminalColor.BOLD + f"{username} Registered" + TerminalColor.END)
 
 
-def delete_account(args):
-    username, password = args.removeaccount
-    user_response = requests.delete(
-        APIBASE + "users/account",
-        json={"delete": {"username": username, "password": password}},
-    )
+def delete_account():
+    check_logged_in()
+    if not confirm_delete():
+        return
 
-    print(TerminalColor.BOLD + user_response.json()["result"] + TerminalColor.END)
+    headersAuth = get_auth_header()
+    response = delete_user(headersAuth)
+    save_cache(f"{PATH}/user.json", json.dumps({}))
+    print(TerminalColor.BOLD + f"Account Deleted" + TerminalColor.END)
+
+
+def confirm_delete():
+    result = input("Are you sure?(y,n):")
+    if result.lower() != "y":
+        print(TerminalColor.BOLD + f"Cancelled" + TerminalColor.END)
+        return False
+
+    return True

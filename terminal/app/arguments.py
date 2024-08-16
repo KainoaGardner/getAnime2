@@ -1,6 +1,7 @@
 from app import parser
 
 account = parser.add_argument_group("Account")
+settings = parser.add_argument_group("Settings")
 watchlist = parser.add_argument_group("Lists")
 add_delete = parser.add_argument_group("Add_delete")
 nyaa = parser.add_argument_group("Nyaa")
@@ -15,6 +16,22 @@ account.add_argument(
 account.add_argument(
     "-lo", "--logout", action="store_true", help="logout out of account"
 )
+
+
+settings.add_argument(
+    "-s",
+    "--settings",
+    action="store_true",
+    help="Toggle Japanese Title setting",
+)
+
+settings.add_argument(
+    "-jt",
+    "--japanese_titles",
+    action="store_true",
+    help="Toggle Japanese Title setting",
+)
+
 
 account.add_argument(
     "-r",
@@ -32,10 +49,10 @@ account.add_argument(
 account.add_argument(
     "-da",
     "--deleteaccount",
-    nargs=2,
-    metavar=("username", "password"),
+    action="store_true",
     help="delete account",
 )
+
 
 watchlist.add_argument(
     "-l",
@@ -49,13 +66,13 @@ watchlist.add_argument(
 )
 
 watchlist.add_argument(
-    "-s",
+    "-so",
     "--sort",
     nargs="?",
     const="r",
     type=str,
     choices=["recent", "r", "name", "n", "id", "i"],
-    metavar=("today, t, watchlist, wl, all, a"),
+    metavar=("recent, r, name, n, id, i"),
     help="sort showed list",
 )
 
