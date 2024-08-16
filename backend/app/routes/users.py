@@ -21,19 +21,6 @@ def get_current_user(auth: user_dependency, db: Session = Depends(get_db)):
     return auth
 
 
-# @router.get("/{search}", response_model=User)
-# def get_user(search: str, search_by_id: bool = False, db: Session = Depends(get_db)):
-#     if search_by_id:
-#         if not search.isnumeric():
-#             raise HTTPException(status_code=404, detail="Search must be an int")
-#         user = users.get_user_id(db, search)
-#     else:
-#         user = users.get_user_username(db, search)
-#     if not user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     return user
-
-
 @router.get("/settings", response_model=Settings)
 def get_settings(auth: user_dependency, db: Session = Depends(get_db)):
     user_id = auth["id"]
@@ -42,7 +29,7 @@ def get_settings(auth: user_dependency, db: Session = Depends(get_db)):
 
 
 @router.put("/settings", response_model=Settings)
-def get_settings(
+def update_settings(
     auth: user_dependency, new_settings: Settings, db: Session = Depends(get_db)
 ):
     user_id = auth["id"]
@@ -55,14 +42,6 @@ def create_user(new_user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Username already taken")
 
     return users.create_user(db, new_user)
-
-
-# @router.put("/update", response_model=schemas.User)
-# def update_user(
-#     auth: user_dependency, new_info: schemas.UserCreate, db: Session = Depends(get_db)
-# ):
-#     return users.create_user(db, new_user)
-#
 
 
 @router.delete("/delete", response_model=User)

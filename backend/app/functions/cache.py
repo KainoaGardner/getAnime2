@@ -9,7 +9,7 @@ def read_cache(file: str):
         return season_cache
 
     except:
-        raise ValueError("Cache error")
+        raise FileNotFoundError("Cache error")
 
 
 def save_cache(file: str, data: Dict):
@@ -18,4 +18,4 @@ def save_cache(file: str, data: Dict):
             season_cache = json.dumps(data)
             f.write(season_cache)
     except:
-        raise ValueError("Cache error")
+        raise FileNotFoundError("Cache error")

@@ -1,20 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
-# from selenium.webdriver.firefox.options import Options  # REMOVE FOR DOCKER
-
 from app.functions.cache import save_cache
 
-from datetime import date
 from app.env import LIVECHART_URL
-import json
 
 
 def webscrape(week):
-    # options = Options()  # REMOVE FOR DOCKER
-    # options.add_argument("--headless")  # REMOVE FOR DOCKER
-    # driver = webdriver.Firefox(options=options)  # REMOVE FOR DOCKER
-
     driver = webdriver.Remote(
         options=webdriver.ChromeOptions(),
         command_executor="http://chrome:4444/wd/hub",
