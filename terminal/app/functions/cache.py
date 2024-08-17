@@ -9,7 +9,7 @@ def read_cache(file):
         return cache
 
     except:
-        raise ValueError("Cache error")
+        raise FileNotFoundError("Cache error")
 
 
 def save_cache(file, data):
@@ -17,7 +17,7 @@ def save_cache(file, data):
         with open(file, "w") as f:
             f.write(data)
     except:
-        raise ValueError("Cache error")
+        raise FileNotFoundError("Cache error")
 
 
 def check_logged_in():
@@ -31,8 +31,3 @@ def get_auth_header():
     cache = read_cache(f"{PATH}/user.json")
     token = cache["access_token"]
     return {"Authorization": "Bearer " + token}
-
-
-def get_settings_cache():
-    cache = read_cache(f"{PATH}/settings.json")
-    print(cache)
