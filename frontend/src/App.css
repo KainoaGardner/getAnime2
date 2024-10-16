@@ -56,6 +56,13 @@ button {
   margin: 2px 2px;
 }
 
+button:active {
+  background-color: light-dark(
+    var(--light-color-selected),
+    var(--dark-color-selected)
+  );
+}
+
 .mainBody {
   margin-top: 10px;
   background-color: light-dark(
