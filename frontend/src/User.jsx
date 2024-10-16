@@ -6,6 +6,7 @@ import "./Login.css";
 function User({ setPage, handleError, username, setUsername }) {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [jpTitles, setJpTitles] = useState(false);
+  const [confirm, setConfirm] = useState("");
 
   useEffect(() => {
     if (!CheckToken()) {
@@ -80,6 +81,22 @@ function User({ setPage, handleError, username, setUsername }) {
     }
   };
 
+  const deleteUser = async () => {
+    setConfirm("");
+    try {
+      const response = await fetch("http://" + API_URL + "users/delete", {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.ok) {
+        logout();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const logout = () => {
     setUsername("");
     localStorage.clear();
@@ -98,6 +115,20 @@ function User({ setPage, handleError, username, setUsername }) {
           <button className="input" onClick={() => logout()}>
             Logout
           </button>
+          {confirm !== "" ? (
+            <div className="inputBody">
+              <h3>Are you sure you want to delete user</h3>
+              <button onClick={() => deleteUser()}>Delete</button>
+              <button onClick={() => setConfirm("")}>Cancel</button>
+            </div>
+          ) : (
+            <button
+              className="addremButton"
+              onClick={() => setConfirm("confirm")}
+            >
+              Delete Account
+            </button>
+          )}
         </div>
       </div>
     </>
