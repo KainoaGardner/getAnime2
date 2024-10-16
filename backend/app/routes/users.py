@@ -8,12 +8,13 @@ from app.functions import users
 from app.functions.authentication import user_dependency
 
 
-router = APIRouter(prefix="/users", tags=["Users"])
+router = APIRouter(prefix="/api/users", tags=["Users"])
 
 
-@router.get("/all", response_model=list[User])
-def get_all_users(db: Session = Depends(get_db)):
-    return users.get_all(db)
+# @router.get("/all", response_model=list[User])
+# def get_all_users(db: Session = Depends(get_db)):
+#     return users.get_all(db)
+#
 
 
 @router.get("/current", response_model=User)

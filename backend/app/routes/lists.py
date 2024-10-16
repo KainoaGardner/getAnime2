@@ -5,7 +5,7 @@ from app.database.schemas import AnimeBase, WeeklyAnime
 
 from app.functions import lists
 
-router = APIRouter(prefix="/lists", tags=["Anime Lists"])
+router = APIRouter(prefix="/api/lists", tags=["Anime Lists"])
 
 
 @router.get("/today", response_model=Dict[str, WeeklyAnime])

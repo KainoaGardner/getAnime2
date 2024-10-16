@@ -26,6 +26,7 @@ services:
     image: selenium/standalone-chrome:latest
     hostname: chrome
     restart: always
+    shm_size: 2g
 
     ports:
       - "4444:4444"
@@ -43,3 +44,13 @@ services:
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+
+  frontend:
+    image: frontend
+    pull_policy: never
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"

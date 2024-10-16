@@ -1,0 +1,314 @@
+
+:root {
+  --primary-color: green;
+  --secondary-color: white;
+
+  color-scheme: light dark;
+  --light-color-primary: #bbbab8;
+  --light-color-secondary: #ecf0f1;
+  --light-color-accent: #cccbc9;
+  --light-font-color: #000000;
+  --light-color-outline: #6d6b72;
+  --light-color-selected: #a4a3a0;
+
+  --dark-color-primary: #1e1e1e;
+  --dark-color-secondary: #353535;
+  --dark-color-accent: #4f4c48;
+  --dark-font-color: #ffffff;
+  --dark-color-outline: #9c9c9c;
+  --dark-color-selected: #303030;
+}
+
+body {
+  color: light-dark(var(--light-color-primary), var(--dark-color-primary));
+  background-color: light-dark(
+    var(--light-color-primary),
+    var(--dark-color-primary)
+  );
+}
+
+p,
+h1,
+h2,
+h3 {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+}
+
+input {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  background-color: light-dark(
+    var(--light-color-accent),
+    var(--dark-color-accent)
+  );
+}
+
+button {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  background-color: light-dark(
+    var(--light-color-accent),
+    var(--dark-color-accent)
+  );
+  border: 2px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  font-weight: bold;
+  padding: 10px 10px;
+  margin: 2px 2px;
+}
+
+.mainBody {
+  margin-top: 10px;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 3px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  padding: 15px 15px;
+}
+
+.navBody {
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  position: fixed;
+  top: 0;
+}
+
+.listBody {
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  position: fixed;
+
+  bottom: 0px;
+}
+
+.navButton {
+  width: 100%;
+}
+
+.addremBody {
+  display: flex;
+}
+
+.addremMain {
+  text-align: center;
+}
+
+.sort {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+}
+
+input {
+  border: 2px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+  padding: 10px 10px;
+  margin: 5px 5px;
+  font-weight: bold;
+}
+
+.animeMain {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.animeLeft {
+  vertical-align: middle;
+}
+
+.addremButton {
+  width: 200px;
+}
+
+.animeTitle {
+  font-size: 25px;
+}
+
+img {
+  width: 200px;
+}
+
+.selected {
+  background-color: light-dark(
+    var(--light-color-selected),
+    var(--dark-color-selected)
+  );
+}
+--light-color-secondary: #ecf0f1;
+--light-color-accent: #fd6f53;
+--light-font-color: #000000;
+--light-color-outline: #ffffff;
+--light-color-selected: #303030;
+
+--dark-color-primary: #1e1e1e;
+--dark-color-secondary: #353535;
+--dark-color-accent: #4f4c48;
+--dark-font-color: #ffffff;
+--dark-color-outline: #9c9c9c;
+--dark-color-selected: #303030;
+}
+body {
+  color: light-dark(var(--light-color-primary), var(--dark-color-primary));
+  background-color: light-dark(
+    var(--light-color-primary),
+    var(--dark-color-primary)
+  );
+}
+
+p,
+h1,
+h2,
+h3 {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+}
+
+input {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  background-color: light-dark(
+    var(--light-color-accent),
+    var(--dark-color-accent)
+  );
+}
+
+button {
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  background-color: light-dark(
+    var(--light-color-accent),
+    var(--dark-color-accent)
+  );
+  border: 2px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  font-weight: bold;
+  padding: 10px 10px;
+  margin: 2px 2px;
+}
+
+.mainBody {
+  margin-top: 10px;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 3px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  padding: 15px 15px;
+}
+
+.navBody {
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  position: fixed;
+  top: 0;
+}
+
+.listBody {
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+
+  position: fixed;
+
+  bottom: 0px;
+}
+
+.navButton {
+  width: 100%;
+}
+
+.addremBody {
+  display: flex;
+}
+
+.addremMain {
+  text-align: center;
+}
+
+.sort {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  background-color: light-dark(
+    var(--light-color-secondary),
+    var(--dark-color-secondary)
+  );
+  border: 1px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+}
+
+input {
+  border: 2px solid
+    light-dark(var(--light-color-outline), var(--dark-color-outline));
+  padding: 10px 10px;
+  margin: 5px 5px;
+  font-weight: bold;
+}
+
+.animeMain {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.animeLeft {
+  vertical-align: middle;
+}
+
+.addremButton {
+  width: 200px;
+}
+
+.animeTitle {
+  font-size: 25px;
+}
+
+img {
+  width: 200px;
+}
+
+.selected {
+  background-color: light-dark(
+    var(--light-color-selected),
+    var(--dark-color-selected)
+  );
+}

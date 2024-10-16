@@ -8,7 +8,7 @@ from app.functions import entries, lists
 from app.functions.authentication import user_dependency
 
 
-router = APIRouter(prefix="/entries", tags=["Watchlist Entries"])
+router = APIRouter(prefix="/api/entries", tags=["Watchlist Entries"])
 
 
 @router.get("/all", response_model=list[Entry])

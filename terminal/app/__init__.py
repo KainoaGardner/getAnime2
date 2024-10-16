@@ -4,7 +4,7 @@ import os
 msg = "Terminal verison to checking daily airing anime"
 parser = argparse.ArgumentParser(description=msg)
 
-APIBASE = "http://10.0.0.76:8000/getanime/api"
+APIBASE = "http://10.0.0.61:8000"
 PATH = os.path.dirname(__file__)
 
 

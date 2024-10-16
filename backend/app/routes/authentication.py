@@ -10,7 +10,7 @@ from app.database.schemas import Token
 from app.functions import authentication
 from datetime import datetime
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
