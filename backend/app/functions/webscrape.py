@@ -6,11 +6,11 @@ from app.env import LIVECHART_URL
 
 
 def webscrape(week):
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument("--no-sandbox")
     driver = webdriver.Remote(
         options=options,
-        command_executor="http://chrome:4444/wd/hub",
+        command_executor="http://firefox:4444/wd/hub",
     )
 
     driver.get(LIVECHART_URL)

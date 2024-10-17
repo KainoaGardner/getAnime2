@@ -22,9 +22,9 @@ services:
       - postgres
       - chrome
 
-  chrome:
-    image: selenium/standalone-chrome:latest
-    hostname: chrome
+  firefox:
+    image: selenium/standalone-firefox:latest
+    hostname: firefox
     restart: always
     shm_size: 2g
 
