@@ -20,7 +20,7 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
-      - chrome
+      - firefox
 
   firefox:
     image: selenium/standalone-firefox:latest
