@@ -34,13 +34,26 @@ foo@bar: getAnime -l t
 2 ID: 235 Meitantei Conan
 ```
 
-<h3>Add Anime -a</h3>
-<p>Use Mal Id to add anime through website or terminal</p>
+<h3>Add Delete Clear</h3>
+<p>Use Mal Id to add and delete anime</p>
+
+#### Options 
+>
+> - a [Id] //add anime to watchlist
+> - d [Id]  //delete anime from watchlist
+> - c //clear entire watchlist
+
 <h3>Example</h3>
 
 ```shell
 foo@bar: getAnime -a 21
 ---Adding---
+1 ID: 21 One Piece
+```
+
+```shell
+foo@bar: getAnime -d 21
+---Deleting---
 1 ID: 21 One Piece
 ```
 
