@@ -1,5 +1,6 @@
 <h1 align="left">Seasonal Anime Episode Watchlist and Daily Airing Web Scaper</h1>
 A watchlist for seasonally airing anime which shows the user which shows when watching shows episodes are airing. 
+
 <https://ganime.kainoagardner.xyz/>
 <img src="ganime.png"
      alt="Image"
