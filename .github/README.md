@@ -8,6 +8,15 @@ Anime Ids are based of MAL API
 <https://myanimelist.net>
 
 <h2>Terminal Commands</h2>
+<h3>User Settings</h3>
+
+#### Options 
+>
+> - li [username] [password] //login 
+> - lo //logout
+> - r [username] [password] //register
+
+
 <h3>List Anime -l</h3>
 
 #### Options 
