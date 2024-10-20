@@ -9,6 +9,7 @@ Anime Ids are based of MAL API
 
 <h2>Terminal Commands</h2>
 <h3>List Anime -l</h3>
+
 #### Options 
 >
 > - today, t  //user's today airing
@@ -16,6 +17,7 @@ Anime Ids are based of MAL API
 > - all a //seasonal list
 
 <h3>Example</h3>
+
 ```shell
 foo@bar: getAnime -l t
 ---Watchlist Airing Today---
@@ -26,6 +28,7 @@ foo@bar: getAnime -l t
 <h3>Add Anime -a</h3>
 <p>Use Mal Id to add anime through website or terminal</p>
 <h3>Example</h3>
+
 ```shell
 foo@bar: getAnime -a 21
 ---Adding---
