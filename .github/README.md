@@ -2,6 +2,7 @@
 A watchlist for seasonally airing anime which shows the user which shows when watching shows episodes are airing. 
 
 <https://ganime.kainoagardner.xyz/>
+
 <img src="ganime.png"
      alt="Image"
      style="float: left; margin-right: 10px; height: 500px" />
