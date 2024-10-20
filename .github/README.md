@@ -8,7 +8,7 @@ Anime Ids are based of MAL API
 <https://myanimelist.net>
 
 Anime Episode Schedule scraper from LiveChart
-<[https://myanimelist.net](https://www.livechart.me/schedule)>
+<https://www.livechart.me/schedule>
 
 <h2>Terminal Commands</h2>
 <h3>User Settings</h3>
