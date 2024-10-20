@@ -10,7 +10,7 @@
      
 <h2>Example</h2>
 
-```console
+```shell
 foo@bar: getAnime -a 21
 ---Adding---
 1 ID: 21 One Piece
