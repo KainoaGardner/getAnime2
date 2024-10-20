@@ -1,6 +1,6 @@
 <h1 align="left">Seasonal Anime Episode Watchlist and Daily Airing Web Scaper</h1>
 <https://ganime.kainoagardner.xyz/>
-<img src=".github/2024-10-20_13-45.png"
+<img src=".github/ganime.png"
      alt="Image"
      style="float: left; margin-right: 10px; height: 300px" />
 <p></p>
