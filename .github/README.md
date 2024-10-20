@@ -2,6 +2,16 @@
 <https://ganime.kainoagardner.xyz/>
 <img src="ganime.png"
      alt="Image"
-     style="float: left; margin-right: 10px; height: 300px" />
-<p></p>
+     style="float: left; margin-right: 10px; height: 500px" />
+
+<h2>Add Anime</h2>
+<p>Use Mal Id to add anime through website or terminal</p>
+<https://myanimelist.net>
+     
+<h2>Example</h2>
+```
+getAnime -a 21
+```
+
+<h2>Terminal Commands</h2>
 
